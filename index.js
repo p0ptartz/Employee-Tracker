@@ -64,7 +64,6 @@ const role = [
     },
 ]
 
-
 const employee = [
     {
         type: "input",
@@ -161,6 +160,7 @@ const viewEmployees = () => {
     init()
 }
 
+// function that runs entire prompt
 const init = () => {
     inquirer.prompt(main)
         .then((data) => {
@@ -176,8 +176,13 @@ const init = () => {
                 viewRoles()
             } else if (data.mainChoice === "View All Employees") {
                 viewEmployees()
+            } else {
+                console.log("Goodbye =)")
+                process.exit()
             }
+
         })
+
 }
 
 init()
