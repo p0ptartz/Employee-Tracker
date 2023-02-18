@@ -9,7 +9,7 @@ const db = mysql.createConnection(
         host: '127.0.0.1',
         user: process.env.DB_USER,
         password: "",
-        database: process.env.DB_NAME
+        database: "employee_db"
     }
 );
 
@@ -40,6 +40,20 @@ const department = [
         message: "What is the name of the department?"
     }
 ]
+
+const addDepartment = () => {
+    inquirer.prompt(department)
+        .then((data) => {
+            // console.log(data.departmentName)
+            db.query(`INSERT INTO department(name) VALUES ("${data.departmentName}")`, (err) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    init()
+                }
+            })
+        })
+}
 
 const role = [
     {
@@ -106,8 +120,6 @@ const init = () => {
                 //     .then(init)
                 addEmployee()
             }
-
-
         })
 }
 
