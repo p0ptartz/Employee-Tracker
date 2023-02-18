@@ -26,7 +26,8 @@ const main = [
             "View All Roles",
             "Add Role",
             "View All Deparrtments",
-            "Add Department"
+            "Add Department",
+            "Quit"
         ]
     }
 ]
@@ -90,7 +91,21 @@ const employee = [
 
 
 const init = () => {
-    inquirer.prompt()
+    inquirer.prompt(main)
+        .then((data) => {
+            if (data.mainChoice === "Add Department") {
+                inquirer.prompt(department)
+                    .then(init)
+            } else if (data.mainChoice === "Add Role") {
+                inquirer.prompt(role)
+                    .then(init)
+            } else if (data.mainChoice === "Add Employee") {
+                inquirer.prompt(employee)
+                    .then(init)
+            }
+
+
+        })
 }
 
 init()
