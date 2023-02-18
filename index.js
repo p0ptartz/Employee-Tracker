@@ -78,13 +78,13 @@ const employee = [
     },
     {
         type: "input",
-        name: "role",
-        message: "What is the employees role?"
+        name: "roleId",
+        message: "What is the employees role ID?"
     },
     {
         type: "input",
-        name: "manager",
-        message: "Who is this employee's manager?"
+        name: "managerId",
+        message: "What is the employee's manager number?"
     }
 ]
 
@@ -115,9 +115,18 @@ const addRole = () => {
         })
 }
 
-
-
-
+const addEmployee = () => {
+    inquirer.prompt(employee)
+        .then((data) => {
+            db.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${data.firstName}", "${data.lastName}", "${data.roleId}", "${data.managerId}")`, (err) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    init()
+                }
+            })
+        })
+}
 
 const init = () => {
     inquirer.prompt(main)
