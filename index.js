@@ -41,24 +41,10 @@ const department = [
     }
 ]
 
-const addDepartment = () => {
-    inquirer.prompt(department)
-        .then((data) => {
-            // console.log(data.departmentName)
-            db.query(`INSERT INTO department(name) VALUES ("${data.departmentName}")`, (err) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    init()
-                }
-            })
-        })
-}
-
 const role = [
     {
         type: "input",
-        name: "roleName",
+        name: "roleTitle",
         message: "What is the name of the role?",
     },
     {
@@ -77,6 +63,7 @@ const role = [
         ]
     },
 ]
+
 
 const employee = [
     {
@@ -100,6 +87,34 @@ const employee = [
         message: "Who is this employee's manager?"
     }
 ]
+
+const addDepartment = () => {
+    inquirer.prompt(department)
+        .then((data) => {
+            // console.log(data.departmentName)
+            db.query(`INSERT INTO department(name) VALUES ("${data.departmentName}")`, (err) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    init()
+                }
+            })
+        })
+}
+
+const addRole = () => {
+    inquirer.prompt(role)
+        .then((data) => {
+            db.query(`INSERT INTO role(title, salary, department_id) VALUES ("${data.roleTitle}", "${data.roleSalary}", "${data.departmentId}")`, (err) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    init()
+                }
+            })
+        })
+}
+
 
 
 
