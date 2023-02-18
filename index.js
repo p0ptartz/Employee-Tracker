@@ -128,21 +128,54 @@ const addEmployee = () => {
         })
 }
 
+const viewDepartments = () => {
+    db.query(`SELECT * FROM department`, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.table(data)
+        }
+    })
+    init()
+}
+
+const viewRoles = () => {
+    db.query(`SELECT * FROM role`, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.table(data)
+        }
+    })
+    init()
+}
+
+const viewEmployees = () => {
+    db.query(`SELECT * FROM employee`, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.table(data)
+        }
+    })
+    init()
+}
+
 const init = () => {
     inquirer.prompt(main)
         .then((data) => {
             if (data.mainChoice === "Add Department") {
-                // inquirer.prompt(department)
-                //     .then(init)
                 addDepartment()
             } else if (data.mainChoice === "Add Role") {
-                // inquirer.prompt(role)
-                //     .then(init)
                 addRole()
             } else if (data.mainChoice === "Add Employee") {
-                // inquirer.prompt(employee)
-                //     .then(init)
                 addEmployee()
+            } else if (data.mainChoice === "View All Deparrtments") {
+                viewDepartments()
+            } else if (data.mainChoice === "View All Roles") {
+                viewRoles()
+            } else if (data.mainChoice === "View All Employees") {
+                viewEmployees()
             }
         })
 }
