@@ -94,14 +94,17 @@ const init = () => {
     inquirer.prompt(main)
         .then((data) => {
             if (data.mainChoice === "Add Department") {
-                inquirer.prompt(department)
-                    .then(init)
+                // inquirer.prompt(department)
+                //     .then(init)
+                addDepartment()
             } else if (data.mainChoice === "Add Role") {
-                inquirer.prompt(role)
-                    .then(init)
+                // inquirer.prompt(role)
+                //     .then(init)
+                addRole()
             } else if (data.mainChoice === "Add Employee") {
-                inquirer.prompt(employee)
-                    .then(init)
+                // inquirer.prompt(employee)
+                //     .then(init)
+                addEmployee()
             }
 
 
